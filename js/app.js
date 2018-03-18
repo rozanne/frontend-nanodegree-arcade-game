@@ -134,28 +134,65 @@ Player.prototype.handleInput = function(dir) {
     }
 };
 
+// to check is this game over
 var isFinishGame = false;
-function finishGame() {
-    updateNotice('Finally you win!!! Bugs are all disappeared!');
-    isFinishGame = true;
-    allEnemies = [];
-}
-
-function updateNotice(msg) {
-    document.getElementById('notice').innerText = msg;
-}
-
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var enemyNum = 5;
 var allEnemies = [];
-for(var i = 0; i < enemyNum; i++) {
-    allEnemies[i] = new Enemy();
+var player = new Player();
+initGame();
+
+// when starting game, it will be initialized
+function initGame() {
+    updateNotice('Cross the road!');
+    isFinishGame = false;
+    var enemyNum = 5;
+    for(var i = 0; i < enemyNum; i++) {
+        allEnemies[i] = new Enemy();
+    }
+
+    player = new Player();
 }
 
-var player = new Player();
+// when finishing game, it will show popup and restart game
+function finishGame() {
+    updateNotice('Finally you win!!! Bugs are all disappeared! Game will be restarted within 5 seconds');
+    isFinishGame = true;
+    allEnemies = [];
+
+    var restartTime = 0;
+    var curruntTime = 5;
+    showPopup(curruntTime);
+
+    var timer = window.setInterval(function() {
+        if(curruntTime > restartTime) {
+            showPopup(--curruntTime);
+        }
+        else {
+            clearInterval(timer);
+            hidePopup();
+            initGame();
+        }
+    }, 1000);
+}
+
+// updateNotice
+function updateNotice(msg) {
+    document.getElementById('notice').innerText = msg;
+}
+
+// show popup
+function showPopup(msg) {
+    document.getElementById("popup").className = 'show';
+    document.getElementById("popupMsg").innerText = msg;
+}
+
+// hide popup
+function hidePopup() {
+    document.getElementById("popup").className = 'hide';
+}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
