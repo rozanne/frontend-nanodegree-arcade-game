@@ -1,6 +1,34 @@
 frontend-nanodegree-arcade-game
 ===============================
 
+# How to Run
+In order to try to run this game,
+First please clone this project or get download with zip file.
+Then, drag to browser or double click the index.html file which you see on the root of the project.
+Easy to run. Enjoy!
+
+## css
+It contains style sheet for beautiful styling your project.
+    * style.css
+
+## images
+It contains game resource kind of the image of the enemy, or player. You can refer and use this folder for loading images on your project.
+
+## js
+It contains mainly javascript file for making to run the game logically.
+    * app.js
+        Logical codes for running this game just like key input for player.
+    * engine.js
+        Provide simple game engine to run game on the html5 canvas.
+    * resource.js
+        Provide easily to load images which is used on your project.
+
+## index.html
+It contains the layout for this project, and setting meta data for applying to each browser.
+
+## README.md
+It contains some kind of guides or introduction for this project.
+
 # Manual
 This arcade game will be started automatically.
 
