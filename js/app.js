@@ -8,14 +8,14 @@ var Enemy = function() {
     this.sprite = 'images/enemy-bug.png';
 
     // set speed randomly
-    this.speed = (Math.random() + 1) * 200;
+    this.speed = (Math.random() + 1) * 250;
 
     // set Initial prosition randomly
     this.initPosition();
 };
 
 Enemy.prototype.initPosition = function() {
-    var maxRandom = 4;
+    var maxRandom = 3;
     var minRandom = 0;
 
     this.x = -400 + (Math.floor((Math.random() * maxRandom) + minRandom) * 100);
@@ -34,6 +34,11 @@ Enemy.prototype.update = function(dt) {
         this.initPosition();
     }
     this.x += dt * this.speed;
+
+    // if enemy and player are closed in 50, it will restart game;
+    if(Math.abs(player.x - this.x) < 50 && Math.abs(player.y - this.y) < 50) {
+        initGame();
+    }
 };
 
 // Draw the enemy on the screen, required method for game
